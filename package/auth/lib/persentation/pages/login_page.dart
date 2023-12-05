@@ -1,4 +1,5 @@
 // ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables
+import 'package:auth/persentation/widgets/QActionButton.dart';
 import 'package:auth/persentation/widgets/QTextField.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -78,23 +79,24 @@ class _LoginPageState extends State<LoginPage> {
               height: 16.0,
             ),
             // btn
+            QActionButton(label: 'Login', onPressed: () {}),
             const SizedBox(
               height: 16.0,
             ),
-            Row(
-              children: [
-                Text(
-                  'Don\'t have an account yet?',
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                Text(
-                  'Register',
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                )
-              ],
+            RichText(
+              text: TextSpan(
+                text: 'Don\'t have an account yet? ',
+                style: Theme.of(context).textTheme.bodyMedium,
+                children: [
+                  TextSpan(
+                    text: 'Register',
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                  ),
+                ],
+              ),
             )
           ],
         ),
