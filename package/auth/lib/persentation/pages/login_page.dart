@@ -1,6 +1,8 @@
 // ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables
+import 'package:auth/persentation/pages/register_page.dart';
 import 'package:auth/persentation/widgets/QActionButton.dart';
 import 'package:auth/persentation/widgets/QTextField.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -167,6 +169,15 @@ class _LoginPageState extends State<LoginPage> with FormValidationMixin {
                               fontWeight: FontWeight.bold,
                               color: Theme.of(context).primaryColor,
                             ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const RegisterPage(),
+                              ),
+                            );
+                          },
                       ),
                     ],
                   ),
