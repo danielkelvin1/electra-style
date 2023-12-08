@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class QActionButton extends StatelessWidget {
   final String label;
-  final Function onPressed;
+  final Function()? onPressed;
+
   const QActionButton({
     Key? key,
     required this.label,
@@ -20,15 +21,23 @@ class QActionButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(9),
           ),
+          disabledBackgroundColor:
+              Theme.of(context).primaryColor.withOpacity(0.5),
         ),
-        onPressed: () => onPressed(),
-        child: Text(
-          label,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                fontWeight: FontWeight.w500,
+        onPressed: onPressed,
+        child: onPressed != null
+            ? Text(
+                label,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                    ),
+              )
+            : const CircularProgressIndicator(
                 color: Colors.white,
+                strokeWidth: 3,
+                strokeCap: StrokeCap.round,
               ),
-        ),
       ),
     );
   }
