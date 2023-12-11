@@ -19,9 +19,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
       result.fold(
         (error) => emit(_Error(error.message)),
-        (user) => emit(
-          _Loaded(user),
-        ),
+        (user) => emit(_Loaded(user)),
       );
     });
 

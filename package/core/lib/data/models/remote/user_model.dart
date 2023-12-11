@@ -13,9 +13,9 @@ class UserModel with _$UserModel {
     @JsonKey(name: "name") required String name,
     @JsonKey(name: "username") required String username,
     @JsonKey(name: "email") required String email,
-    @JsonKey(name: "email_verified_at") required dynamic emailVerifiedAt,
-    @JsonKey(name: "image_url") required dynamic imageUrl,
-    @JsonKey(name: "roles") required String roles,
+    @JsonKey(name: "email_verified_at") required String? emailVerifiedAt,
+    @JsonKey(name: "image_url") required String? imageUrl,
+    @JsonKey(name: "roles") required String? roles,
     @JsonKey(name: "gender") required String gender,
   }) = _UserModel;
 
@@ -26,7 +26,7 @@ class UserModel with _$UserModel {
         name: name,
         username: username,
         email: email,
-        roles: roles,
+        roles: roles ?? '',
         gender: gender,
       );
 }

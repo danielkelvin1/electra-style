@@ -21,6 +21,9 @@ class _$Injection extends Injection {
           name: 'auth_repo')
       ..registerSingleton((c) => LoginUser(c<AuthRepository>('auth_repo')),
           name: 'login_user')
-      ..registerFactory((c) => LoginBloc(c<LoginUser>('login_user')));
+      ..registerSingleton((c) => RegisterUSer(c<AuthRepository>('auth_repo')),
+          name: 'register_user')
+      ..registerFactory((c) => LoginBloc(c<LoginUser>('login_user')))
+      ..registerFactory((c) => RegisterBloc(c<RegisterUSer>('register_user')));
   }
 }

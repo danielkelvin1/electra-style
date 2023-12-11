@@ -11,9 +11,9 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       username: json['username'] as String,
       email: json['email'] as String,
-      emailVerifiedAt: json['email_verified_at'],
-      imageUrl: json['image_url'],
-      roles: json['roles'] as String,
+      emailVerifiedAt: json['email_verified_at'] as String?,
+      imageUrl: json['image_url'] as String?,
+      roles: json['roles'] as String?,
       gender: json['gender'] as String,
     );
 

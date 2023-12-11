@@ -1,13 +1,14 @@
 // ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables
 import 'package:auth/persentation/pages/register_page.dart';
-import 'package:auth/persentation/widgets/QActionButton.dart';
-import 'package:auth/persentation/widgets/QTextField.dart';
+import 'package:core/persentation/widget/QActionButton.dart';
+import 'package:core/persentation/widget/QTextField.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:core/utils/form_validation_mixin.dart';
-import 'package:auth/persentation/bloc/login_bloc.dart';
+import 'package:auth/persentation/bloc/login/login_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -171,12 +172,7 @@ class _LoginPageState extends State<LoginPage> with FormValidationMixin {
                             ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const RegisterPage(),
-                              ),
-                            );
+                            context.push('/register');
                           },
                       ),
                     ],

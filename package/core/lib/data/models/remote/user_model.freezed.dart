@@ -27,11 +27,11 @@ mixin _$UserModel {
   @JsonKey(name: "email")
   String get email => throw _privateConstructorUsedError;
   @JsonKey(name: "email_verified_at")
-  dynamic get emailVerifiedAt => throw _privateConstructorUsedError;
+  String? get emailVerifiedAt => throw _privateConstructorUsedError;
   @JsonKey(name: "image_url")
-  dynamic get imageUrl => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
   @JsonKey(name: "roles")
-  String get roles => throw _privateConstructorUsedError;
+  String? get roles => throw _privateConstructorUsedError;
   @JsonKey(name: "gender")
   String get gender => throw _privateConstructorUsedError;
 
@@ -50,9 +50,9 @@ abstract class $UserModelCopyWith<$Res> {
       {@JsonKey(name: "name") String name,
       @JsonKey(name: "username") String username,
       @JsonKey(name: "email") String email,
-      @JsonKey(name: "email_verified_at") dynamic emailVerifiedAt,
-      @JsonKey(name: "image_url") dynamic imageUrl,
-      @JsonKey(name: "roles") String roles,
+      @JsonKey(name: "email_verified_at") String? emailVerifiedAt,
+      @JsonKey(name: "image_url") String? imageUrl,
+      @JsonKey(name: "roles") String? roles,
       @JsonKey(name: "gender") String gender});
 }
 
@@ -74,7 +74,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? email = null,
     Object? emailVerifiedAt = freezed,
     Object? imageUrl = freezed,
-    Object? roles = null,
+    Object? roles = freezed,
     Object? gender = null,
   }) {
     return _then(_value.copyWith(
@@ -93,15 +93,15 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
       emailVerifiedAt: freezed == emailVerifiedAt
           ? _value.emailVerifiedAt
           : emailVerifiedAt // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      roles: null == roles
+              as String?,
+      roles: freezed == roles
           ? _value.roles
           : roles // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -122,9 +122,9 @@ abstract class _$$UserModelImplCopyWith<$Res>
       {@JsonKey(name: "name") String name,
       @JsonKey(name: "username") String username,
       @JsonKey(name: "email") String email,
-      @JsonKey(name: "email_verified_at") dynamic emailVerifiedAt,
-      @JsonKey(name: "image_url") dynamic imageUrl,
-      @JsonKey(name: "roles") String roles,
+      @JsonKey(name: "email_verified_at") String? emailVerifiedAt,
+      @JsonKey(name: "image_url") String? imageUrl,
+      @JsonKey(name: "roles") String? roles,
       @JsonKey(name: "gender") String gender});
 }
 
@@ -144,7 +144,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? email = null,
     Object? emailVerifiedAt = freezed,
     Object? imageUrl = freezed,
-    Object? roles = null,
+    Object? roles = freezed,
     Object? gender = null,
   }) {
     return _then(_$UserModelImpl(
@@ -163,15 +163,15 @@ class __$$UserModelImplCopyWithImpl<$Res>
       emailVerifiedAt: freezed == emailVerifiedAt
           ? _value.emailVerifiedAt
           : emailVerifiedAt // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      roles: null == roles
+              as String?,
+      roles: freezed == roles
           ? _value.roles
           : roles // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -207,13 +207,13 @@ class _$UserModelImpl extends _UserModel {
   final String email;
   @override
   @JsonKey(name: "email_verified_at")
-  final dynamic emailVerifiedAt;
+  final String? emailVerifiedAt;
   @override
   @JsonKey(name: "image_url")
-  final dynamic imageUrl;
+  final String? imageUrl;
   @override
   @JsonKey(name: "roles")
-  final String roles;
+  final String? roles;
   @override
   @JsonKey(name: "gender")
   final String gender;
@@ -232,24 +232,18 @@ class _$UserModelImpl extends _UserModel {
             (identical(other.username, username) ||
                 other.username == username) &&
             (identical(other.email, email) || other.email == email) &&
-            const DeepCollectionEquality()
-                .equals(other.emailVerifiedAt, emailVerifiedAt) &&
-            const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
+            (identical(other.emailVerifiedAt, emailVerifiedAt) ||
+                other.emailVerifiedAt == emailVerifiedAt) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl) &&
             (identical(other.roles, roles) || other.roles == roles) &&
             (identical(other.gender, gender) || other.gender == gender));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      name,
-      username,
-      email,
-      const DeepCollectionEquality().hash(emailVerifiedAt),
-      const DeepCollectionEquality().hash(imageUrl),
-      roles,
-      gender);
+  int get hashCode => Object.hash(runtimeType, name, username, email,
+      emailVerifiedAt, imageUrl, roles, gender);
 
   @JsonKey(ignore: true)
   @override
@@ -271,9 +265,9 @@ abstract class _UserModel extends UserModel {
       @JsonKey(name: "username") required final String username,
       @JsonKey(name: "email") required final String email,
       @JsonKey(name: "email_verified_at")
-      required final dynamic emailVerifiedAt,
-      @JsonKey(name: "image_url") required final dynamic imageUrl,
-      @JsonKey(name: "roles") required final String roles,
+      required final String? emailVerifiedAt,
+      @JsonKey(name: "image_url") required final String? imageUrl,
+      @JsonKey(name: "roles") required final String? roles,
       @JsonKey(name: "gender") required final String gender}) = _$UserModelImpl;
   const _UserModel._() : super._();
 
@@ -291,13 +285,13 @@ abstract class _UserModel extends UserModel {
   String get email;
   @override
   @JsonKey(name: "email_verified_at")
-  dynamic get emailVerifiedAt;
+  String? get emailVerifiedAt;
   @override
   @JsonKey(name: "image_url")
-  dynamic get imageUrl;
+  String? get imageUrl;
   @override
   @JsonKey(name: "roles")
-  String get roles;
+  String? get roles;
   @override
   @JsonKey(name: "gender")
   String get gender;
