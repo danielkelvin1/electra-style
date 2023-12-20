@@ -214,6 +214,7 @@ class _RegisterPageState extends State<RegisterPage> with FormValidationMixin {
                       loaded: (user) {
                         context.go('/');
                       },
+                      error: (message) {},
                     );
                   },
                   builder: (context, state) {

@@ -1,5 +1,4 @@
 // ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables
-import 'package:auth/persentation/pages/register_page.dart';
 import 'package:core/persentation/widget/QActionButton.dart';
 import 'package:core/persentation/widget/QTextField.dart';
 import 'package:flutter/gestures.dart';
@@ -132,14 +131,8 @@ class _LoginPageState extends State<LoginPage> with FormValidationMixin {
                 BlocConsumer<LoginBloc, LoginState>(
                   listener: (context, state) {
                     state.maybeWhen(
-                      loaded: (user) => {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Scaffold(),
-                          ),
-                        ),
-                      },
+                      loaded: (user) => {context.go('/')},
+                      error: (message) {},
                       orElse: () {},
                     );
                   },

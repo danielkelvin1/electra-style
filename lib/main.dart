@@ -3,6 +3,8 @@ import 'package:auth/persentation/bloc/register/register_bloc.dart';
 import 'package:auth/persentation/pages/login_page.dart';
 import 'package:auth/persentation/pages/register_page.dart';
 import 'package:core/injection.dart';
+import 'package:core/persentation/page/main_page.dart';
+import 'package:core/service/local_storeage.dart';
 import 'package:core/styles/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => KiwiContainer().resolve<RegisterBloc>(),
-        )
+        ),
       ],
       child: MaterialApp.router(
         routerConfig: _router,
@@ -40,6 +42,17 @@ class MyApp extends StatelessWidget {
   final GoRouter _router = GoRouter(routes: [
     GoRoute(
       path: '/',
+      builder: (context, state) => const MainPage(),
+      redirect: (context, state) async {
+        final checkStateLogin = await read();
+        if (checkStateLogin == null) {
+          return '/login';
+        }
+        return null;
+      },
+    ),
+    GoRoute(
+      path: '/login',
       builder: (context, state) => const LoginPage(),
     ),
     GoRoute(

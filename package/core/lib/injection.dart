@@ -6,6 +6,7 @@ import 'package:core/data/repository/auth_repository.dart';
 import 'package:core/domain/repository/auth_repository.dart';
 import 'package:core/service/api_service.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:auth/domain/usecase/login_user.dart';
 import 'package:auth/domain/usecase/register_user.dart';

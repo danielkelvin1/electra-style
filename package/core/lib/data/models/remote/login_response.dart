@@ -1,7 +1,5 @@
 import 'package:core/data/models/remote/user_model.dart';
-import 'package:meta/meta.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'dart:convert';
 
 part 'login_response.freezed.dart';
 part 'login_response.g.dart';

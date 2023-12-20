@@ -19,10 +19,14 @@ class AuthRepositoryImpl extends AuthRepository {
     try {
       final result = await authRemoteDataSource.login(email, password);
       return Right(result.toEntity());
-    } on ServerException {
+    } on DioException catch (e) {
+      if (e.error.toString().contains('SocketException')) {
+        return const Left(ConnectionFailure('Failed Network'));
+      }
+      if (e.response?.statusCode == 401) {
+        return Left(AuthorizationFailure(e.response?.data['error']));
+      }
       return const Left(ServerFailure(''));
-    } on SocketException {
-      return const Left(ConnectionFailure('Failed to connect to the network'));
     }
   }
 
@@ -30,15 +34,15 @@ class AuthRepositoryImpl extends AuthRepository {
   Future<Either<Failure, User>> register(RegisterRequest register) async {
     try {
       final result = await authRemoteDataSource.register(register);
-
       return Right(result.toEntity());
-    } on ServerException {
-      return const Left(ServerFailure(''));
-    } on SocketException {
-      return const Left(ConnectionFailure('Failed to connect to the network'));
     } on DioException catch (e) {
-      print(e.error);
-      return const Left(ConnectionFailure('Failed Network'));
+      if (e.error.toString().contains('SocketException')) {
+        return const Left(ConnectionFailure('Failed Network'));
+      }
+      if (e.response?.statusCode == 422) {
+        return Left(ValidationFailure(e.response?.data['message']));
+      }
+      return const Left(ServerFailure(''));
     }
   }
 }
