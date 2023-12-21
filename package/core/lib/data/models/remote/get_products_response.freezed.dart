@@ -20,7 +20,9 @@ GetProductsResponse _$GetProductsResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$GetProductsResponse {
+  @JsonKey(name: 'current_page')
   int get currentPage => throw _privateConstructorUsedError;
+  @JsonKey(name: 'per_page')
   int get perPage => throw _privateConstructorUsedError;
   int get total => throw _privateConstructorUsedError;
   List<ProductModel> get data => throw _privateConstructorUsedError;
@@ -37,7 +39,11 @@ abstract class $GetProductsResponseCopyWith<$Res> {
           GetProductsResponse value, $Res Function(GetProductsResponse) then) =
       _$GetProductsResponseCopyWithImpl<$Res, GetProductsResponse>;
   @useResult
-  $Res call({int currentPage, int perPage, int total, List<ProductModel> data});
+  $Res call(
+      {@JsonKey(name: 'current_page') int currentPage,
+      @JsonKey(name: 'per_page') int perPage,
+      int total,
+      List<ProductModel> data});
 }
 
 /// @nodoc
@@ -87,7 +93,11 @@ abstract class _$$GetProductsResponseImplCopyWith<$Res>
       __$$GetProductsResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int currentPage, int perPage, int total, List<ProductModel> data});
+  $Res call(
+      {@JsonKey(name: 'current_page') int currentPage,
+      @JsonKey(name: 'per_page') int perPage,
+      int total,
+      List<ProductModel> data});
 }
 
 /// @nodoc
@@ -131,8 +141,8 @@ class __$$GetProductsResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$GetProductsResponseImpl implements _GetProductsResponse {
   const _$GetProductsResponseImpl(
-      {required this.currentPage,
-      required this.perPage,
+      {@JsonKey(name: 'current_page') required this.currentPage,
+      @JsonKey(name: 'per_page') required this.perPage,
       required this.total,
       required final List<ProductModel> data})
       : _data = data;
@@ -141,8 +151,10 @@ class _$GetProductsResponseImpl implements _GetProductsResponse {
       _$$GetProductsResponseImplFromJson(json);
 
   @override
+  @JsonKey(name: 'current_page')
   final int currentPage;
   @override
+  @JsonKey(name: 'per_page')
   final int perPage;
   @override
   final int total;
@@ -160,7 +172,7 @@ class _$GetProductsResponseImpl implements _GetProductsResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetProductsResponseImpl &&
@@ -193,8 +205,8 @@ class _$GetProductsResponseImpl implements _GetProductsResponse {
 
 abstract class _GetProductsResponse implements GetProductsResponse {
   const factory _GetProductsResponse(
-      {required final int currentPage,
-      required final int perPage,
+      {@JsonKey(name: 'current_page') required final int currentPage,
+      @JsonKey(name: 'per_page') required final int perPage,
       required final int total,
       required final List<ProductModel> data}) = _$GetProductsResponseImpl;
 
@@ -202,8 +214,10 @@ abstract class _GetProductsResponse implements GetProductsResponse {
       _$GetProductsResponseImpl.fromJson;
 
   @override
+  @JsonKey(name: 'current_page')
   int get currentPage;
   @override
+  @JsonKey(name: 'per_page')
   int get perPage;
   @override
   int get total;

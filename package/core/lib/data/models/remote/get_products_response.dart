@@ -7,8 +7,8 @@ part 'get_products_response.g.dart';
 @freezed
 class GetProductsResponse with _$GetProductsResponse {
   const factory GetProductsResponse({
-    required int currentPage,
-    required int perPage,
+    @JsonKey(name: 'current_page') required int currentPage,
+    @JsonKey(name: 'per_page') required int perPage,
     required int total,
     required List<ProductModel> data,
   }) = _GetProductsResponse;

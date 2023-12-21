@@ -16,14 +16,26 @@ class _$Injection extends Injection {
       ..registerFactory<AuthRemoteDataSource>(
           (c) => AuthRemoteDataSourceImpl(c<ApiService>('api_service')),
           name: 'auth_remote')
+      ..registerFactory<ProductRemoteDataSource>(
+          (c) => ImplProductRemoteDataSource(c<ApiService>('api_service')),
+          name: 'product_remote')
       ..registerFactory<AuthRepository>(
           (c) => AuthRepositoryImpl(c<AuthRemoteDataSource>('auth_remote')),
           name: 'auth_repo')
+      ..registerFactory<ProductRepository>(
+          (c) => ProductRepositoryImpl(
+              c<ProductRemoteDataSource>('product_remote')),
+          name: 'product_repo')
       ..registerSingleton((c) => LoginUser(c<AuthRepository>('auth_repo')),
           name: 'login_user')
       ..registerSingleton((c) => RegisterUSer(c<AuthRepository>('auth_repo')),
           name: 'register_user')
+      ..registerSingleton(
+          (c) => GetAllProductsHome(c<ProductRepository>('product_repo')),
+          name: 'get_all_products_home')
       ..registerFactory((c) => LoginBloc(c<LoginUser>('login_user')))
-      ..registerFactory((c) => RegisterBloc(c<RegisterUSer>('register_user')));
+      ..registerFactory((c) => RegisterBloc(c<RegisterUSer>('register_user')))
+      ..registerFactory((c) => GetAllProductHomeBloc(
+          c<GetAllProductsHome>('get_all_products_home')));
   }
 }

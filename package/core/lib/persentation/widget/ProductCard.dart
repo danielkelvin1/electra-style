@@ -1,9 +1,20 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatefulWidget {
-  const ProductCard({super.key});
+  const ProductCard({
+    Key? key,
+    required this.imageUrl,
+    required this.title,
+    required this.subtitle,
+    required this.price,
+  }) : super(key: key);
+  final String imageUrl;
+  final String title;
+  final String subtitle;
+  final String price;
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -21,7 +32,7 @@ class _ProductCardState extends State<ProductCard> {
                 borderRadius: BorderRadius.circular(15),
                 child: LayoutBuilder(
                   builder: (context, constraints) => Image.network(
-                    'https://images.tokopedia.net/img/KRMmCm/2022/5/9/488c5172-8305-4d76-8519-06c7ed915ba6.jpg',
+                    widget.imageUrl,
                     fit: BoxFit.cover,
                     height: constraints.maxHeight,
                   ),
@@ -51,7 +62,7 @@ class _ProductCardState extends State<ProductCard> {
           height: 12.0,
         ),
         Text(
-          'Roller Rabbit',
+          widget.title,
           style: Theme.of(context)
               .textTheme
               .titleMedium
@@ -61,7 +72,7 @@ class _ProductCardState extends State<ProductCard> {
           height: 8.0,
         ),
         Text(
-          'Description Singkat',
+          widget.subtitle,
           style: Theme.of(context)
               .textTheme
               .titleSmall
@@ -71,7 +82,7 @@ class _ProductCardState extends State<ProductCard> {
           height: 8.0,
         ),
         Text(
-          '\$12',
+          '\$${widget.price}',
           style: Theme.of(context)
               .textTheme
               .titleMedium

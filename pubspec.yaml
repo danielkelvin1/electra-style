@@ -13,6 +13,8 @@ dependencies:
     path: package/auth
   core:
     path: package/core
+  home:
+    path: package/home
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
