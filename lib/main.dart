@@ -1,69 +1,72 @@
+import 'package:auth/persentation/bloc/login/login_bloc.dart';
+import 'package:auth/persentation/bloc/register/register_bloc.dart';
+import 'package:auth/persentation/pages/login_page.dart';
+import 'package:auth/persentation/pages/register_page.dart';
+import 'package:core/injection.dart';
+import 'package:home/persentation/page/detail_product_page.dart';
+import 'package:core/persentation/page/main_page.dart';
+import 'package:core/service/local_storeage.dart';
+import 'package:core/styles/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home/persentation/bloc/get_all_product_home_bloc.dart';
+import 'package:kiwi/kiwi.dart';
+import 'package:go_router/go_router.dart';
 
 void main() {
-  runApp(const MyApp());
+  AppModule.setup();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => KiwiContainer().resolve<LoginBloc>(),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        BlocProvider(
+          create: (context) => KiwiContainer().resolve<RegisterBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => KiwiContainer().resolve<GetAllProductHomeBloc>(),
+        ),
+      ],
+      child: MaterialApp.router(
+        routerConfig: _router,
+        title: 'Electra Style',
+        debugShowCheckedModeBanner: false,
+        theme: lightAppTheme(context),
       ),
     );
   }
+
+  final GoRouter _router = GoRouter(routes: [
+    GoRoute(
+      path: '/',
+      builder: (context, state) => const MainPage(),
+      redirect: (context, state) async {
+        final checkStateLogin = await read();
+        if (checkStateLogin == null) {
+          return '/login';
+        }
+        return null;
+      },
+    ),
+    GoRoute(
+      path: '/login',
+      builder: (context, state) => const LoginPage(),
+    ),
+    GoRoute(
+      path: '/register',
+      builder: (context, state) => const RegisterPage(),
+    ),
+    GoRoute(
+      path: '/detail-product',
+      builder: (context, state) => const DetailProductPage(),
+    ),
+  ]);
 }
