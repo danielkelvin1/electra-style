@@ -1,23 +1,39 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 // ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 
 class QCardReviewList extends StatefulWidget {
-  const QCardReviewList({Key? key}) : super(key: key);
+  const QCardReviewList({
+    Key? key,
+    required this.nameReviews,
+    required this.valueStars,
+    required this.dateReviews,
+    required this.messageReviews,
+    this.messageSeller,
+    required this.imageReviews,
+  }) : super(key: key);
+  final String nameReviews;
+  final int valueStars;
+  final String imageReviews;
+  final String dateReviews;
+  final String messageReviews;
+  final String? messageSeller;
 
   @override
   State<QCardReviewList> createState() => _QCardReviewListState();
 }
 
 class _QCardReviewListState extends State<QCardReviewList> {
+  bool _sellerResponseShow = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            // border: Border.all(color: Colors.grey, width: 1),
             boxShadow: const [
               BoxShadow(
                 color: Colors.grey,
@@ -38,7 +54,7 @@ class _QCardReviewListState extends State<QCardReviewList> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.network(
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLLnxiSuxmCdQx9wWMxfQ33s2mygSMRq83rw&usqp=CAU',
+              widget.imageReviews,
               width: 80,
               height: 80,
               fit: BoxFit.cover,
@@ -57,7 +73,7 @@ class _QCardReviewListState extends State<QCardReviewList> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Andrew Laksaasdas as',
+                              widget.nameReviews,
                               style: Theme.of(context)
                                   .textTheme
                                   .labelLarge
@@ -70,7 +86,7 @@ class _QCardReviewListState extends State<QCardReviewList> {
                               height: 4.0,
                             ),
                             Text(
-                              '20 June 2023',
+                              widget.dateReviews,
                               style: Theme.of(context)
                                   .textTheme
                                   .labelMedium
@@ -89,21 +105,45 @@ class _QCardReviewListState extends State<QCardReviewList> {
                     ],
                   ),
                   Text(
-                    'loremlorem lorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem loremlorem lorem',
+                    widget.messageReviews,
                     style: Theme.of(context).textTheme.labelMedium,
                   ),
                   const SizedBox(
                     height: 12.0,
                   ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        'Seller Response',
-                      ),
-                      Icon(Icons.keyboard_arrow_down)
-                    ],
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _sellerResponseShow = !_sellerResponseShow;
+                      });
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        const Text(
+                          'Seller Response',
+                        ),
+                        Icon(_sellerResponseShow
+                            ? Icons.keyboard_arrow_up
+                            : Icons.keyboard_arrow_down)
+                      ],
+                    ),
                   ),
+                  Visibility(
+                    visible: _sellerResponseShow,
+                    child: Container(
+                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.only(top: 12),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: const Color.fromARGB(255, 237, 237, 237),
+                      ),
+                      child: Text(
+                        widget.messageSeller ?? '',
+                        style: Theme.of(context).textTheme.labelMedium,
+                      ),
+                    ),
+                  )
                 ],
               ),
             )

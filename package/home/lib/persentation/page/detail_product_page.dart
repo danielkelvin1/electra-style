@@ -111,7 +111,16 @@ class _DetailProductPageState extends State<DetailProductPage> {
                   const SizedBox(
                     height: 12.0,
                   ),
-                  const QCardReviewList(),
+                  const QCardReviewList(
+                    imageReviews:
+                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLLnxiSuxmCdQx9wWMxfQ33s2mygSMRq83rw&usqp=CAU',
+                    nameReviews: "Andrew Lasin asd asdas das d as",
+                    dateReviews: "20 Jun 2023",
+                    messageReviews:
+                        "lorem askdosakdand sdoasodas dasodjaso doskadok",
+                    messageSeller: "adwijdijwi",
+                    valueStars: 4,
+                  ),
                   const SizedBox(
                     height: 20.0,
                   ),
