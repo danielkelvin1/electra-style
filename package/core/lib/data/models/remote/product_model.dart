@@ -1,3 +1,5 @@
+import 'package:core/data/models/remote/rating_model.dart';
+import 'package:core/data/models/remote/user_model.dart';
 import 'package:core/domain/entities/product.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -8,19 +10,25 @@ part 'product_model.g.dart';
 class ProductModel with _$ProductModel {
   const ProductModel._();
   const factory ProductModel({
+    required int id,
     required String title,
     required String subtitle,
     required String description,
     required String price,
-    required List<ImagesModel> images,
+    required List<ImagesProductModel> images,
+    required List<RatingModel>? ratings,
+    required UserModel? user,
   }) = _ProductModel;
 
   Product toEntity() => Product(
+        id: id,
         title: title,
         subtitle: subtitle,
         description: description,
         price: price,
+        ratings: ratings?.map((e) => e.toEntity()).toList(),
         images: images.map((e) => e.toEntity()).toList(),
+        seller: user?.toEntity(),
       );
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>
@@ -28,14 +36,14 @@ class ProductModel with _$ProductModel {
 }
 
 @freezed
-class ImagesModel with _$ImagesModel {
-  const ImagesModel._();
-  const factory ImagesModel({
+class ImagesProductModel with _$ImagesProductModel {
+  const ImagesProductModel._();
+  const factory ImagesProductModel({
     @JsonKey(name: 'image_url') required String imageUrl,
-  }) = _ImagesModel;
+  }) = _ImagesProductModel;
 
-  factory ImagesModel.fromJson(Map<String, dynamic> json) =>
-      _$ImagesModelFromJson(json);
+  factory ImagesProductModel.fromJson(Map<String, dynamic> json) =>
+      _$ImagesProductModelFromJson(json);
 
-  Image toEntity() => Image(imageUrl: imageUrl);
+  ImageProduct toEntity() => ImageProduct(imageUrl: imageUrl);
 }

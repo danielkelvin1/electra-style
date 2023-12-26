@@ -25,4 +25,20 @@ class ProductRepositoryImpl extends ProductRepository {
       return const Left(ServerFailure(''));
     }
   }
+
+  @override
+  Future<Either<Failure, Product>> getDetail(int id) async {
+    try {
+      final result = await productRemoteDataSource.getDetail(id);
+      return Right(result.toEntity());
+    } on DioException catch (e) {
+      if (e.error.toString().contains('SocketException')) {
+        return const Left(ConnectionFailure('Failed Network'));
+      }
+      if (e.response?.statusCode == 401) {
+        return Left(AuthorizationFailure(e.response?.data['error']));
+      }
+      return const Left(ServerFailure(''));
+    }
+  }
 }

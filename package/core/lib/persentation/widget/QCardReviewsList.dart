@@ -15,7 +15,7 @@ class QCardReviewList extends StatefulWidget {
     required this.imageReviews,
   }) : super(key: key);
   final String nameReviews;
-  final int valueStars;
+  final double valueStars;
   final String imageReviews;
   final String dateReviews;
   final String messageReviews;
@@ -32,6 +32,7 @@ class _QCardReviewListState extends State<QCardReviewList> {
   Widget build(BuildContext context) {
     return Container(
         padding: const EdgeInsets.all(14),
+        margin: const EdgeInsets.only(bottom: 20),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             boxShadow: const [
@@ -97,10 +98,11 @@ class _QCardReviewListState extends State<QCardReviewList> {
                           ],
                         ),
                       ),
-                      const RatingStars(
+                      RatingStars(
                         valueLabelVisibility: false,
                         starSize: 14,
-                        value: 4,
+                        starColor: const Color(0xffffab07),
+                        value: widget.valueStars,
                       ),
                     ],
                   ),
@@ -129,18 +131,21 @@ class _QCardReviewListState extends State<QCardReviewList> {
                       ],
                     ),
                   ),
-                  Visibility(
-                    visible: _sellerResponseShow,
-                    child: Container(
-                      padding: const EdgeInsets.all(10),
-                      margin: const EdgeInsets.only(top: 12),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: const Color.fromARGB(255, 237, 237, 237),
-                      ),
-                      child: Text(
-                        widget.messageSeller ?? '',
-                        style: Theme.of(context).textTheme.labelMedium,
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Visibility(
+                      visible: _sellerResponseShow,
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        margin: const EdgeInsets.only(top: 12),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: const Color.fromARGB(255, 237, 237, 237),
+                        ),
+                        child: Text(
+                          widget.messageSeller ?? '',
+                          style: Theme.of(context).textTheme.labelMedium,
+                        ),
                       ),
                     ),
                   )

@@ -47,4 +47,13 @@ class ApiService {
       throw ServerException();
     }
   }
+
+  Future<ProductModel> getDetailProduct(int id) async {
+    final response = await dio.get('$baseUrl/product/$id');
+    if (response.statusCode == 200) {
+      return ProductModel.fromJson(response.data);
+    } else {
+      throw ServerException();
+    }
+  }
 }

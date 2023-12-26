@@ -20,11 +20,14 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProductModel {
+  int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get subtitle => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get price => throw _privateConstructorUsedError;
-  List<ImagesModel> get images => throw _privateConstructorUsedError;
+  List<ImagesProductModel> get images => throw _privateConstructorUsedError;
+  List<RatingModel>? get ratings => throw _privateConstructorUsedError;
+  UserModel? get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,11 +42,16 @@ abstract class $ProductModelCopyWith<$Res> {
       _$ProductModelCopyWithImpl<$Res, ProductModel>;
   @useResult
   $Res call(
-      {String title,
+      {int id,
+      String title,
       String subtitle,
       String description,
       String price,
-      List<ImagesModel> images});
+      List<ImagesProductModel> images,
+      List<RatingModel>? ratings,
+      UserModel? user});
+
+  $UserModelCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -59,13 +67,20 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? subtitle = null,
     Object? description = null,
     Object? price = null,
     Object? images = null,
+    Object? ratings = freezed,
+    Object? user = freezed,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -85,8 +100,28 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
       images: null == images
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<ImagesModel>,
+              as List<ImagesProductModel>,
+      ratings: freezed == ratings
+          ? _value.ratings
+          : ratings // ignore: cast_nullable_to_non_nullable
+              as List<RatingModel>?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserModelCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserModelCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
   }
 }
 
@@ -99,11 +134,17 @@ abstract class _$$ProductModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String title,
+      {int id,
+      String title,
       String subtitle,
       String description,
       String price,
-      List<ImagesModel> images});
+      List<ImagesProductModel> images,
+      List<RatingModel>? ratings,
+      UserModel? user});
+
+  @override
+  $UserModelCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -117,13 +158,20 @@ class __$$ProductModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? subtitle = null,
     Object? description = null,
     Object? price = null,
     Object? images = null,
+    Object? ratings = freezed,
+    Object? user = freezed,
   }) {
     return _then(_$ProductModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -143,7 +191,15 @@ class __$$ProductModelImplCopyWithImpl<$Res>
       images: null == images
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<ImagesModel>,
+              as List<ImagesProductModel>,
+      ratings: freezed == ratings
+          ? _value._ratings
+          : ratings // ignore: cast_nullable_to_non_nullable
+              as List<RatingModel>?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
     ));
   }
 }
@@ -152,17 +208,23 @@ class __$$ProductModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ProductModelImpl extends _ProductModel {
   const _$ProductModelImpl(
-      {required this.title,
+      {required this.id,
+      required this.title,
       required this.subtitle,
       required this.description,
       required this.price,
-      required final List<ImagesModel> images})
+      required final List<ImagesProductModel> images,
+      required final List<RatingModel>? ratings,
+      required this.user})
       : _images = images,
+        _ratings = ratings,
         super._();
 
   factory _$ProductModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductModelImplFromJson(json);
 
+  @override
+  final int id;
   @override
   final String title;
   @override
@@ -171,17 +233,30 @@ class _$ProductModelImpl extends _ProductModel {
   final String description;
   @override
   final String price;
-  final List<ImagesModel> _images;
+  final List<ImagesProductModel> _images;
   @override
-  List<ImagesModel> get images {
+  List<ImagesProductModel> get images {
     if (_images is EqualUnmodifiableListView) return _images;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_images);
   }
 
+  final List<RatingModel>? _ratings;
+  @override
+  List<RatingModel>? get ratings {
+    final value = _ratings;
+    if (value == null) return null;
+    if (_ratings is EqualUnmodifiableListView) return _ratings;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final UserModel? user;
+
   @override
   String toString() {
-    return 'ProductModel(title: $title, subtitle: $subtitle, description: $description, price: $price, images: $images)';
+    return 'ProductModel(id: $id, title: $title, subtitle: $subtitle, description: $description, price: $price, images: $images, ratings: $ratings, user: $user)';
   }
 
   @override
@@ -189,19 +264,30 @@ class _$ProductModelImpl extends _ProductModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.subtitle, subtitle) ||
                 other.subtitle == subtitle) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.price, price) || other.price == price) &&
-            const DeepCollectionEquality().equals(other._images, _images));
+            const DeepCollectionEquality().equals(other._images, _images) &&
+            const DeepCollectionEquality().equals(other._ratings, _ratings) &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title, subtitle, description,
-      price, const DeepCollectionEquality().hash(_images));
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      title,
+      subtitle,
+      description,
+      price,
+      const DeepCollectionEquality().hash(_images),
+      const DeepCollectionEquality().hash(_ratings),
+      user);
 
   @JsonKey(ignore: true)
   @override
@@ -219,16 +305,21 @@ class _$ProductModelImpl extends _ProductModel {
 
 abstract class _ProductModel extends ProductModel {
   const factory _ProductModel(
-      {required final String title,
+      {required final int id,
+      required final String title,
       required final String subtitle,
       required final String description,
       required final String price,
-      required final List<ImagesModel> images}) = _$ProductModelImpl;
+      required final List<ImagesProductModel> images,
+      required final List<RatingModel>? ratings,
+      required final UserModel? user}) = _$ProductModelImpl;
   const _ProductModel._() : super._();
 
   factory _ProductModel.fromJson(Map<String, dynamic> json) =
       _$ProductModelImpl.fromJson;
 
+  @override
+  int get id;
   @override
   String get title;
   @override
@@ -238,41 +329,45 @@ abstract class _ProductModel extends ProductModel {
   @override
   String get price;
   @override
-  List<ImagesModel> get images;
+  List<ImagesProductModel> get images;
+  @override
+  List<RatingModel>? get ratings;
+  @override
+  UserModel? get user;
   @override
   @JsonKey(ignore: true)
   _$$ProductModelImplCopyWith<_$ProductModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-ImagesModel _$ImagesModelFromJson(Map<String, dynamic> json) {
-  return _ImagesModel.fromJson(json);
+ImagesProductModel _$ImagesProductModelFromJson(Map<String, dynamic> json) {
+  return _ImagesProductModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ImagesModel {
+mixin _$ImagesProductModel {
   @JsonKey(name: 'image_url')
   String get imageUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ImagesModelCopyWith<ImagesModel> get copyWith =>
+  $ImagesProductModelCopyWith<ImagesProductModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ImagesModelCopyWith<$Res> {
-  factory $ImagesModelCopyWith(
-          ImagesModel value, $Res Function(ImagesModel) then) =
-      _$ImagesModelCopyWithImpl<$Res, ImagesModel>;
+abstract class $ImagesProductModelCopyWith<$Res> {
+  factory $ImagesProductModelCopyWith(
+          ImagesProductModel value, $Res Function(ImagesProductModel) then) =
+      _$ImagesProductModelCopyWithImpl<$Res, ImagesProductModel>;
   @useResult
   $Res call({@JsonKey(name: 'image_url') String imageUrl});
 }
 
 /// @nodoc
-class _$ImagesModelCopyWithImpl<$Res, $Val extends ImagesModel>
-    implements $ImagesModelCopyWith<$Res> {
-  _$ImagesModelCopyWithImpl(this._value, this._then);
+class _$ImagesProductModelCopyWithImpl<$Res, $Val extends ImagesProductModel>
+    implements $ImagesProductModelCopyWith<$Res> {
+  _$ImagesProductModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -294,22 +389,22 @@ class _$ImagesModelCopyWithImpl<$Res, $Val extends ImagesModel>
 }
 
 /// @nodoc
-abstract class _$$ImagesModelImplCopyWith<$Res>
-    implements $ImagesModelCopyWith<$Res> {
-  factory _$$ImagesModelImplCopyWith(
-          _$ImagesModelImpl value, $Res Function(_$ImagesModelImpl) then) =
-      __$$ImagesModelImplCopyWithImpl<$Res>;
+abstract class _$$ImagesProductModelImplCopyWith<$Res>
+    implements $ImagesProductModelCopyWith<$Res> {
+  factory _$$ImagesProductModelImplCopyWith(_$ImagesProductModelImpl value,
+          $Res Function(_$ImagesProductModelImpl) then) =
+      __$$ImagesProductModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({@JsonKey(name: 'image_url') String imageUrl});
 }
 
 /// @nodoc
-class __$$ImagesModelImplCopyWithImpl<$Res>
-    extends _$ImagesModelCopyWithImpl<$Res, _$ImagesModelImpl>
-    implements _$$ImagesModelImplCopyWith<$Res> {
-  __$$ImagesModelImplCopyWithImpl(
-      _$ImagesModelImpl _value, $Res Function(_$ImagesModelImpl) _then)
+class __$$ImagesProductModelImplCopyWithImpl<$Res>
+    extends _$ImagesProductModelCopyWithImpl<$Res, _$ImagesProductModelImpl>
+    implements _$$ImagesProductModelImplCopyWith<$Res> {
+  __$$ImagesProductModelImplCopyWithImpl(_$ImagesProductModelImpl _value,
+      $Res Function(_$ImagesProductModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -317,7 +412,7 @@ class __$$ImagesModelImplCopyWithImpl<$Res>
   $Res call({
     Object? imageUrl = null,
   }) {
-    return _then(_$ImagesModelImpl(
+    return _then(_$ImagesProductModelImpl(
       imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -328,12 +423,13 @@ class __$$ImagesModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ImagesModelImpl extends _ImagesModel {
-  const _$ImagesModelImpl({@JsonKey(name: 'image_url') required this.imageUrl})
+class _$ImagesProductModelImpl extends _ImagesProductModel {
+  const _$ImagesProductModelImpl(
+      {@JsonKey(name: 'image_url') required this.imageUrl})
       : super._();
 
-  factory _$ImagesModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ImagesModelImplFromJson(json);
+  factory _$ImagesProductModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ImagesProductModelImplFromJson(json);
 
   @override
   @JsonKey(name: 'image_url')
@@ -341,14 +437,14 @@ class _$ImagesModelImpl extends _ImagesModel {
 
   @override
   String toString() {
-    return 'ImagesModel(imageUrl: $imageUrl)';
+    return 'ImagesProductModel(imageUrl: $imageUrl)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ImagesModelImpl &&
+            other is _$ImagesProductModelImpl &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl));
   }
@@ -360,31 +456,32 @@ class _$ImagesModelImpl extends _ImagesModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ImagesModelImplCopyWith<_$ImagesModelImpl> get copyWith =>
-      __$$ImagesModelImplCopyWithImpl<_$ImagesModelImpl>(this, _$identity);
+  _$$ImagesProductModelImplCopyWith<_$ImagesProductModelImpl> get copyWith =>
+      __$$ImagesProductModelImplCopyWithImpl<_$ImagesProductModelImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ImagesModelImplToJson(
+    return _$$ImagesProductModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _ImagesModel extends ImagesModel {
-  const factory _ImagesModel(
+abstract class _ImagesProductModel extends ImagesProductModel {
+  const factory _ImagesProductModel(
           {@JsonKey(name: 'image_url') required final String imageUrl}) =
-      _$ImagesModelImpl;
-  const _ImagesModel._() : super._();
+      _$ImagesProductModelImpl;
+  const _ImagesProductModel._() : super._();
 
-  factory _ImagesModel.fromJson(Map<String, dynamic> json) =
-      _$ImagesModelImpl.fromJson;
+  factory _ImagesProductModel.fromJson(Map<String, dynamic> json) =
+      _$ImagesProductModelImpl.fromJson;
 
   @override
   @JsonKey(name: 'image_url')
   String get imageUrl;
   @override
   @JsonKey(ignore: true)
-  _$$ImagesModelImplCopyWith<_$ImagesModelImpl> get copyWith =>
+  _$$ImagesProductModelImplCopyWith<_$ImagesProductModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

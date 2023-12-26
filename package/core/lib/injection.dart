@@ -10,7 +10,9 @@ import 'package:core/domain/repository/product_repository.dart';
 import 'package:core/service/api_service.dart';
 import 'package:dio/dio.dart';
 import 'package:home/domain/usecase/get_all_products_home.dart';
-import 'package:home/persentation/bloc/get_all_product_home_bloc.dart';
+import 'package:home/domain/usecase/get_detail_product.dart';
+import 'package:home/persentation/bloc/get_all_product_home/get_all_product_home_bloc.dart';
+import 'package:home/persentation/bloc/get_detail_product/get_detail_product_bloc.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:auth/domain/usecase/login_user.dart';
 import 'package:auth/domain/usecase/register_user.dart';
@@ -46,11 +48,16 @@ abstract class Injection {
   @Register.singleton(GetAllProductsHome,
       resolvers: {ProductRepository: 'product_repo'},
       name: 'get_all_products_home')
+  @Register.singleton(GetDetailProduct,
+      resolvers: {ProductRepository: 'product_repo'},
+      name: 'get_detail_product')
   //bloc
   @Register.factory(LoginBloc, resolvers: {LoginUser: 'login_user'})
   @Register.factory(RegisterBloc, resolvers: {RegisterUSer: 'register_user'})
   @Register.factory(GetAllProductHomeBloc,
       resolvers: {GetAllProductsHome: 'get_all_products_home'})
+  @Register.factory(GetDetailProductBloc,
+      resolvers: {GetDetailProduct: 'get_detail_product'})
   void configure();
 }
 

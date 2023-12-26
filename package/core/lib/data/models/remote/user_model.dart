@@ -1,7 +1,5 @@
 import 'package:core/domain/entities/user.dart';
-import 'package:meta/meta.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'dart:convert';
 
 part 'user_model.freezed.dart';
 part 'user_model.g.dart';

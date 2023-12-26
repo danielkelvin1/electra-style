@@ -33,9 +33,14 @@ class _$Injection extends Injection {
       ..registerSingleton(
           (c) => GetAllProductsHome(c<ProductRepository>('product_repo')),
           name: 'get_all_products_home')
+      ..registerSingleton(
+          (c) => GetDetailProduct(c<ProductRepository>('product_repo')),
+          name: 'get_detail_product')
       ..registerFactory((c) => LoginBloc(c<LoginUser>('login_user')))
       ..registerFactory((c) => RegisterBloc(c<RegisterUSer>('register_user')))
-      ..registerFactory((c) => GetAllProductHomeBloc(
-          c<GetAllProductsHome>('get_all_products_home')));
+      ..registerFactory((c) =>
+          GetAllProductHomeBloc(c<GetAllProductsHome>('get_all_products_home')))
+      ..registerFactory((c) =>
+          GetDetailProductBloc(c<GetDetailProduct>('get_detail_product')));
   }
 }

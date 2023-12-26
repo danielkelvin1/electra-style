@@ -3,6 +3,7 @@ import 'package:core/service/api_service.dart';
 
 abstract class ProductRemoteDataSource {
   Future<List<ProductModel>> getAll();
+  Future<ProductModel> getDetail(int id);
 }
 
 class ImplProductRemoteDataSource extends ProductRemoteDataSource {
@@ -13,5 +14,10 @@ class ImplProductRemoteDataSource extends ProductRemoteDataSource {
   @override
   Future<List<ProductModel>> getAll() {
     return apiService.getProduct();
+  }
+
+  @override
+  Future<ProductModel> getDetail(int id) {
+    return apiService.getDetailProduct(id);
   }
 }
