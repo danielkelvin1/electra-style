@@ -11,6 +11,7 @@ import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
+  static String routeName = '/login';
 
   @override
   State<LoginPage> createState() => _LoginPageState();

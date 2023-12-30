@@ -1,2 +1,2 @@
-String baseUrl = "https://720b-111-94-78-164.ngrok-free.app/api";
-String imageUrl = "https://720b-111-94-78-164.ngrok-free.app/storage/";
+String baseUrl = "https://e5bf-103-10-66-17.ngrok-free.app/api";
+String imageUrl = "https://e5bf-103-10-66-17.ngrok-free.app/storage/";

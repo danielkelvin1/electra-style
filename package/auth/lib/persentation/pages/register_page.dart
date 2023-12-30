@@ -13,6 +13,7 @@ final List<String> genderList = ['male', 'female'];
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
+  static String routeName = "/register";
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();

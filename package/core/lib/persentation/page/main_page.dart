@@ -3,6 +3,7 @@
 import 'package:core/utils/list_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:home/persentation/page/home_page.dart';
+import 'package:profile/persentation/page/profile_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -21,6 +22,13 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> itemBody = [
+      const HomePage(),
+      const SizedBox(),
+      const SizedBox(),
+      const ProfilePage()
+    ];
+
     List<Icon> items = [
       const Icon(
         Icons.home_outlined,
@@ -40,7 +48,7 @@ class _MainPageState extends State<MainPage> {
       )
     ];
     return Scaffold(
-      body: const HomePage(),
+      body: itemBody[_currentIndex],
       bottomNavigationBar: Container(
         height: 80,
         decoration: const BoxDecoration(

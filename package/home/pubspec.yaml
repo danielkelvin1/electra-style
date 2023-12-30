@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   core:
-    path: "../core"
+    path: ../core
   freezed_annotation: ^2.4.1
   freezed: ^2.4.6
   dartz: ^0.10.1

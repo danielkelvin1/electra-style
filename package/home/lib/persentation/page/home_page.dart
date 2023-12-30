@@ -6,7 +6,7 @@ import 'package:core/utils/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:home/persentation/bloc/get_all_product_home_bloc.dart';
+import 'package:home/persentation/bloc/get_all_product_home/get_all_product_home_bloc.dart';
 import 'package:core/utils/image_url_remove_extension.dart';
 
 class HomePage extends StatefulWidget {
@@ -57,7 +57,8 @@ class _HomePageState extends State<HomePage> {
                         itemBuilder: (context, index) {
                           final item = products[index];
                           return GestureDetector(
-                            onTap: () => context.push('/detail-product'),
+                            onTap: () =>
+                                context.push('/detail-product/${item.id}'),
                             child: ProductCard(
                               title: item.title,
                               subtitle: item.subtitle,
