@@ -6,5 +6,6 @@ class PersonalDetailState with _$PersonalDetailState {
   factory PersonalDetailState.loading() = _Loading;
   factory PersonalDetailState.secondLoading() = _SecondLoading;
   factory PersonalDetailState.loaded(User user) = _Loaded;
+  factory PersonalDetailState.secondLoaded(User user) = _SecondLoaded;
   factory PersonalDetailState.error(String message) = _Error;
 }

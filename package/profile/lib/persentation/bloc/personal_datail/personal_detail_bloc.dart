@@ -5,6 +5,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:profile/domain/usecase/get_user.dart';
+import 'package:profile/domain/usecase/update_picture_user.dart';
+import 'package:profile/domain/usecase/update_user.dart';
 
 part 'personal_detail_event.dart';
 part 'personal_detail_state.dart';
@@ -28,11 +30,21 @@ class PersonalDetailBloc
     });
 
     on<_ChangePicture>((event, emit) {
+      final changePictureUser =
+          KiwiContainer().resolve<UpdatePictureUser>('update_user_picture');
       emit(_SecondLoading());
     });
 
-    on<_UpdateUser>((event, emit) {
+    on<_UpdateUser>((event, emit) async {
+      final updateUser = KiwiContainer().resolve<UpdateUser>('update_user');
       emit(_SecondLoading());
+      final result = await updateUser.execute(event.user);
+      result.fold(
+        (error) => emit(_Error(error.message)),
+        (user) => emit(
+          _SecondLoaded(user),
+        ),
+      );
     });
   }
 }

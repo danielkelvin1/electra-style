@@ -41,10 +41,11 @@ class QTextField extends StatefulWidget {
 }
 
 class _QTextFieldState extends State<QTextField> {
-  TextEditingController textEditingController = TextEditingController();
+  late TextEditingController textEditingController;
 
   @override
   void initState() {
+    textEditingController = TextEditingController();
     textEditingController.text = widget.value ?? "";
     super.initState();
   }

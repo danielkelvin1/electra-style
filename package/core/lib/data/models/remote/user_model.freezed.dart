@@ -24,8 +24,10 @@ mixin _$UserModel {
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: "username")
   String get username => throw _privateConstructorUsedError;
+  @JsonKey(name: "password")
+  String? get password => throw _privateConstructorUsedError;
   @JsonKey(name: "email")
-  String get email => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
   @JsonKey(name: "email_verified_at")
   String? get emailVerifiedAt => throw _privateConstructorUsedError;
   @JsonKey(name: "image_url")
@@ -34,6 +36,8 @@ mixin _$UserModel {
   String? get roles => throw _privateConstructorUsedError;
   @JsonKey(name: "gender")
   String get gender => throw _privateConstructorUsedError;
+  @JsonKey(name: 'old_password')
+  String? get oldPassword => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,11 +53,13 @@ abstract class $UserModelCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: "name") String name,
       @JsonKey(name: "username") String username,
-      @JsonKey(name: "email") String email,
+      @JsonKey(name: "password") String? password,
+      @JsonKey(name: "email") String? email,
       @JsonKey(name: "email_verified_at") String? emailVerifiedAt,
       @JsonKey(name: "image_url") String? imageUrl,
       @JsonKey(name: "roles") String? roles,
-      @JsonKey(name: "gender") String gender});
+      @JsonKey(name: "gender") String gender,
+      @JsonKey(name: 'old_password') String? oldPassword});
 }
 
 /// @nodoc
@@ -71,11 +77,13 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   $Res call({
     Object? name = null,
     Object? username = null,
-    Object? email = null,
+    Object? password = freezed,
+    Object? email = freezed,
     Object? emailVerifiedAt = freezed,
     Object? imageUrl = freezed,
     Object? roles = freezed,
     Object? gender = null,
+    Object? oldPassword = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -86,10 +94,14 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
-      email: null == email
+      password: freezed == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       emailVerifiedAt: freezed == emailVerifiedAt
           ? _value.emailVerifiedAt
           : emailVerifiedAt // ignore: cast_nullable_to_non_nullable
@@ -106,6 +118,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as String,
+      oldPassword: freezed == oldPassword
+          ? _value.oldPassword
+          : oldPassword // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -121,11 +137,13 @@ abstract class _$$UserModelImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: "name") String name,
       @JsonKey(name: "username") String username,
-      @JsonKey(name: "email") String email,
+      @JsonKey(name: "password") String? password,
+      @JsonKey(name: "email") String? email,
       @JsonKey(name: "email_verified_at") String? emailVerifiedAt,
       @JsonKey(name: "image_url") String? imageUrl,
       @JsonKey(name: "roles") String? roles,
-      @JsonKey(name: "gender") String gender});
+      @JsonKey(name: "gender") String gender,
+      @JsonKey(name: 'old_password') String? oldPassword});
 }
 
 /// @nodoc
@@ -141,11 +159,13 @@ class __$$UserModelImplCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? username = null,
-    Object? email = null,
+    Object? password = freezed,
+    Object? email = freezed,
     Object? emailVerifiedAt = freezed,
     Object? imageUrl = freezed,
     Object? roles = freezed,
     Object? gender = null,
+    Object? oldPassword = freezed,
   }) {
     return _then(_$UserModelImpl(
       name: null == name
@@ -156,10 +176,14 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
-      email: null == email
+      password: freezed == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       emailVerifiedAt: freezed == emailVerifiedAt
           ? _value.emailVerifiedAt
           : emailVerifiedAt // ignore: cast_nullable_to_non_nullable
@@ -176,6 +200,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as String,
+      oldPassword: freezed == oldPassword
+          ? _value.oldPassword
+          : oldPassword // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -186,11 +214,13 @@ class _$UserModelImpl extends _UserModel {
   const _$UserModelImpl(
       {@JsonKey(name: "name") required this.name,
       @JsonKey(name: "username") required this.username,
-      @JsonKey(name: "email") required this.email,
-      @JsonKey(name: "email_verified_at") required this.emailVerifiedAt,
-      @JsonKey(name: "image_url") required this.imageUrl,
-      @JsonKey(name: "roles") required this.roles,
-      @JsonKey(name: "gender") required this.gender})
+      @JsonKey(name: "password") required this.password,
+      @JsonKey(name: "email") this.email,
+      @JsonKey(name: "email_verified_at") this.emailVerifiedAt,
+      @JsonKey(name: "image_url") this.imageUrl,
+      @JsonKey(name: "roles") this.roles,
+      @JsonKey(name: "gender") required this.gender,
+      @JsonKey(name: 'old_password') this.oldPassword})
       : super._();
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -203,8 +233,11 @@ class _$UserModelImpl extends _UserModel {
   @JsonKey(name: "username")
   final String username;
   @override
+  @JsonKey(name: "password")
+  final String? password;
+  @override
   @JsonKey(name: "email")
-  final String email;
+  final String? email;
   @override
   @JsonKey(name: "email_verified_at")
   final String? emailVerifiedAt;
@@ -217,10 +250,13 @@ class _$UserModelImpl extends _UserModel {
   @override
   @JsonKey(name: "gender")
   final String gender;
+  @override
+  @JsonKey(name: 'old_password')
+  final String? oldPassword;
 
   @override
   String toString() {
-    return 'UserModel(name: $name, username: $username, email: $email, emailVerifiedAt: $emailVerifiedAt, imageUrl: $imageUrl, roles: $roles, gender: $gender)';
+    return 'UserModel(name: $name, username: $username, password: $password, email: $email, emailVerifiedAt: $emailVerifiedAt, imageUrl: $imageUrl, roles: $roles, gender: $gender, oldPassword: $oldPassword)';
   }
 
   @override
@@ -231,19 +267,23 @@ class _$UserModelImpl extends _UserModel {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.username, username) ||
                 other.username == username) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.emailVerifiedAt, emailVerifiedAt) ||
                 other.emailVerifiedAt == emailVerifiedAt) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
             (identical(other.roles, roles) || other.roles == roles) &&
-            (identical(other.gender, gender) || other.gender == gender));
+            (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.oldPassword, oldPassword) ||
+                other.oldPassword == oldPassword));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, username, email,
-      emailVerifiedAt, imageUrl, roles, gender);
+  int get hashCode => Object.hash(runtimeType, name, username, password, email,
+      emailVerifiedAt, imageUrl, roles, gender, oldPassword);
 
   @JsonKey(ignore: true)
   @override
@@ -261,14 +301,16 @@ class _$UserModelImpl extends _UserModel {
 
 abstract class _UserModel extends UserModel {
   const factory _UserModel(
-      {@JsonKey(name: "name") required final String name,
-      @JsonKey(name: "username") required final String username,
-      @JsonKey(name: "email") required final String email,
-      @JsonKey(name: "email_verified_at")
-      required final String? emailVerifiedAt,
-      @JsonKey(name: "image_url") required final String? imageUrl,
-      @JsonKey(name: "roles") required final String? roles,
-      @JsonKey(name: "gender") required final String gender}) = _$UserModelImpl;
+          {@JsonKey(name: "name") required final String name,
+          @JsonKey(name: "username") required final String username,
+          @JsonKey(name: "password") required final String? password,
+          @JsonKey(name: "email") final String? email,
+          @JsonKey(name: "email_verified_at") final String? emailVerifiedAt,
+          @JsonKey(name: "image_url") final String? imageUrl,
+          @JsonKey(name: "roles") final String? roles,
+          @JsonKey(name: "gender") required final String gender,
+          @JsonKey(name: 'old_password') final String? oldPassword}) =
+      _$UserModelImpl;
   const _UserModel._() : super._();
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
@@ -281,8 +323,11 @@ abstract class _UserModel extends UserModel {
   @JsonKey(name: "username")
   String get username;
   @override
+  @JsonKey(name: "password")
+  String? get password;
+  @override
   @JsonKey(name: "email")
-  String get email;
+  String? get email;
   @override
   @JsonKey(name: "email_verified_at")
   String? get emailVerifiedAt;
@@ -295,6 +340,9 @@ abstract class _UserModel extends UserModel {
   @override
   @JsonKey(name: "gender")
   String get gender;
+  @override
+  @JsonKey(name: 'old_password')
+  String? get oldPassword;
   @override
   @JsonKey(ignore: true)
   _$$UserModelImplCopyWith<_$UserModelImpl> get copyWith =>

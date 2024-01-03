@@ -9,6 +9,6 @@ class UpdateUser {
 
   UpdateUser(this.userRepository);
 
-  Future<Either<Failure, User>> execure(UserModel user) =>
+  Future<Either<Failure, User>> execute(UserModel user) =>
       userRepository.updateUser(user);
 }

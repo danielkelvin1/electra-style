@@ -22,7 +22,9 @@ class QDropDownButton<E> extends StatelessWidget {
       value: value,
       isExpanded: true,
       borderRadius: BorderRadius.circular(8),
-      style: Theme.of(context).textTheme.bodyLarge,
+      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+            color: Theme.of(context).primaryColor,
+          ),
       icon: Icon(
         Icons.arrow_drop_down,
         color: Theme.of(context).primaryColor,

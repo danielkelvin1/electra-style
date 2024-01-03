@@ -8,7 +8,6 @@ import 'package:core/utils/image_url_remove_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 import 'package:core/persentation/widget/QCardReviewsList.dart';
-import 'package:home/domain/usecase/get_detail_product.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home/persentation/bloc/get_detail_product/get_detail_product_bloc.dart';
 

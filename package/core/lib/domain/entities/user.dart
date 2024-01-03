@@ -6,6 +6,7 @@ class User extends Equatable {
   final String email;
   final String? emailVerifiedAt;
   final String? imageUrl;
+  final String? oldPassword;
   final String roles;
   final String gender;
 
@@ -15,6 +16,7 @@ class User extends Equatable {
     required this.email,
     this.emailVerifiedAt,
     this.imageUrl,
+    this.oldPassword,
     required this.roles,
     required this.gender,
   });
@@ -28,6 +30,7 @@ class User extends Equatable {
         emailVerifiedAt,
         imageUrl,
         roles,
+        oldPassword,
         gender,
       ];
 }
