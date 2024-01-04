@@ -1,6 +1,8 @@
 import 'package:core/data/models/remote/get_products_response.dart';
+import 'package:core/data/models/remote/get_province_response.dart';
 import 'package:core/data/models/remote/login_response.dart';
 import 'package:core/data/models/remote/product_model.dart';
+import 'package:core/data/models/remote/province_model.dart';
 import 'package:core/data/models/remote/register_request.dart';
 import 'package:core/data/models/remote/register_response.dart';
 import 'package:core/data/models/remote/upload_image_picture_model.dart';
@@ -99,6 +101,23 @@ class ApiService {
     );
     if (response.statusCode == 200) {
       return UserModel.fromJson(response.data['data']);
+    } else {
+      throw ServerException();
+    }
+  }
+
+  Future<List<ProvinceModel>> getProvince() async {
+    final response = await dio.get(
+      '$baseUrlRajaOngkir/province',
+      options: Options(
+        headers: {
+          'key': apiTokenRajaOngkir,
+        },
+      ),
+    );
+
+    if (response.statusCode == 200) {
+      return GetProvinceResponse.fromJson(response.data['rajaongkir']).results;
     } else {
       throw ServerException();
     }

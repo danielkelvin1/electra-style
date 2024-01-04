@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:core/domain/entities/rating.dart';
 import 'package:core/domain/entities/user.dart';
 import 'package:equatable/equatable.dart';
