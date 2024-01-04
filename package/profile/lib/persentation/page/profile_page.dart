@@ -2,6 +2,7 @@ import 'package:core/utils/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:profile/persentation/page/my_address_page.dart';
 import 'package:profile/persentation/page/personal_detail_page.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -174,6 +175,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     fontWeight: FontWeight.bold,
                   ),
             ),
+            onTap: () {
+              context.push(MyAddressPage.routeName);
+            },
             leading: Container(
               width: 50,
               height: 50,

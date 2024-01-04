@@ -1,3 +1,4 @@
+import 'package:core/data/models/remote/upload_image_picture_model.dart';
 import 'package:core/data/models/remote/user_model.dart';
 import 'package:core/domain/entities/user.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,10 +30,21 @@ class PersonalDetailBloc
       );
     });
 
-    on<_ChangePicture>((event, emit) {
+    on<_ChangePicture>((event, emit) async {
+      User user;
+      if (state is _Loaded) {
+        user = (state as _Loaded).user;
+      } else {
+        user = (state as _SecondLoaded).user;
+      }
       final changePictureUser =
           KiwiContainer().resolve<UpdatePictureUser>('update_user_picture');
       emit(_SecondLoading());
+      final result = await changePictureUser.execute(event.picture);
+      result.fold((error) => emit(_Error(error.message)), (picture) {
+        final updateUser = user.copyWith(imageUrl: picture.path);
+        emit(_SecondLoaded(updateUser));
+      });
     });
 
     on<_UpdateUser>((event, emit) async {

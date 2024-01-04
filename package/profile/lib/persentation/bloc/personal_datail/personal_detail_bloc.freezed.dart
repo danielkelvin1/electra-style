@@ -19,21 +19,21 @@ mixin _$PersonalDetailEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUser,
-    required TResult Function(XFile picture) changePicture,
+    required TResult Function(UploadImagePictureModel picture) changePicture,
     required TResult Function(UserModel user) updateUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getUser,
-    TResult? Function(XFile picture)? changePicture,
+    TResult? Function(UploadImagePictureModel picture)? changePicture,
     TResult? Function(UserModel user)? updateUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUser,
-    TResult Function(XFile picture)? changePicture,
+    TResult Function(UploadImagePictureModel picture)? changePicture,
     TResult Function(UserModel user)? updateUser,
     required TResult orElse(),
   }) =>
@@ -119,7 +119,7 @@ class _$GetUserImpl implements _GetUser {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUser,
-    required TResult Function(XFile picture) changePicture,
+    required TResult Function(UploadImagePictureModel picture) changePicture,
     required TResult Function(UserModel user) updateUser,
   }) {
     return getUser();
@@ -129,7 +129,7 @@ class _$GetUserImpl implements _GetUser {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getUser,
-    TResult? Function(XFile picture)? changePicture,
+    TResult? Function(UploadImagePictureModel picture)? changePicture,
     TResult? Function(UserModel user)? updateUser,
   }) {
     return getUser?.call();
@@ -139,7 +139,7 @@ class _$GetUserImpl implements _GetUser {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUser,
-    TResult Function(XFile picture)? changePicture,
+    TResult Function(UploadImagePictureModel picture)? changePicture,
     TResult Function(UserModel user)? updateUser,
     required TResult orElse(),
   }) {
@@ -194,7 +194,9 @@ abstract class _$$ChangePictureImplCopyWith<$Res> {
           _$ChangePictureImpl value, $Res Function(_$ChangePictureImpl) then) =
       __$$ChangePictureImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({XFile picture});
+  $Res call({UploadImagePictureModel picture});
+
+  $UploadImagePictureModelCopyWith<$Res> get picture;
 }
 
 /// @nodoc
@@ -214,8 +216,16 @@ class __$$ChangePictureImplCopyWithImpl<$Res>
       null == picture
           ? _value.picture
           : picture // ignore: cast_nullable_to_non_nullable
-              as XFile,
+              as UploadImagePictureModel,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UploadImagePictureModelCopyWith<$Res> get picture {
+    return $UploadImagePictureModelCopyWith<$Res>(_value.picture, (value) {
+      return _then(_value.copyWith(picture: value));
+    });
   }
 }
 
@@ -225,7 +235,7 @@ class _$ChangePictureImpl implements _ChangePicture {
   _$ChangePictureImpl(this.picture);
 
   @override
-  final XFile picture;
+  final UploadImagePictureModel picture;
 
   @override
   String toString() {
@@ -253,7 +263,7 @@ class _$ChangePictureImpl implements _ChangePicture {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUser,
-    required TResult Function(XFile picture) changePicture,
+    required TResult Function(UploadImagePictureModel picture) changePicture,
     required TResult Function(UserModel user) updateUser,
   }) {
     return changePicture(picture);
@@ -263,7 +273,7 @@ class _$ChangePictureImpl implements _ChangePicture {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getUser,
-    TResult? Function(XFile picture)? changePicture,
+    TResult? Function(UploadImagePictureModel picture)? changePicture,
     TResult? Function(UserModel user)? updateUser,
   }) {
     return changePicture?.call(picture);
@@ -273,7 +283,7 @@ class _$ChangePictureImpl implements _ChangePicture {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUser,
-    TResult Function(XFile picture)? changePicture,
+    TResult Function(UploadImagePictureModel picture)? changePicture,
     TResult Function(UserModel user)? updateUser,
     required TResult orElse(),
   }) {
@@ -319,9 +329,10 @@ class _$ChangePictureImpl implements _ChangePicture {
 }
 
 abstract class _ChangePicture implements PersonalDetailEvent {
-  factory _ChangePicture(final XFile picture) = _$ChangePictureImpl;
+  factory _ChangePicture(final UploadImagePictureModel picture) =
+      _$ChangePictureImpl;
 
-  XFile get picture;
+  UploadImagePictureModel get picture;
   @JsonKey(ignore: true)
   _$$ChangePictureImplCopyWith<_$ChangePictureImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -402,7 +413,7 @@ class _$UpdateUserImpl implements _UpdateUser {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUser,
-    required TResult Function(XFile picture) changePicture,
+    required TResult Function(UploadImagePictureModel picture) changePicture,
     required TResult Function(UserModel user) updateUser,
   }) {
     return updateUser(user);
@@ -412,7 +423,7 @@ class _$UpdateUserImpl implements _UpdateUser {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getUser,
-    TResult? Function(XFile picture)? changePicture,
+    TResult? Function(UploadImagePictureModel picture)? changePicture,
     TResult? Function(UserModel user)? updateUser,
   }) {
     return updateUser?.call(user);
@@ -422,7 +433,7 @@ class _$UpdateUserImpl implements _UpdateUser {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUser,
-    TResult Function(XFile picture)? changePicture,
+    TResult Function(UploadImagePictureModel picture)? changePicture,
     TResult Function(UserModel user)? updateUser,
     required TResult orElse(),
   }) {

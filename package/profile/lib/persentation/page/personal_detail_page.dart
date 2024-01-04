@@ -1,9 +1,11 @@
+import 'package:core/data/models/remote/upload_image_picture_model.dart';
 import 'package:core/data/models/remote/user_model.dart';
 import 'package:core/domain/entities/user.dart';
 import 'package:core/persentation/widget/QActionButton.dart';
 import 'package:core/persentation/widget/QDropDownButton.dart';
 import 'package:core/persentation/widget/QTextField.dart';
 import 'package:core/utils/constant.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:go_router/go_router.dart';
@@ -287,8 +289,15 @@ class _PersonalDetailPageState extends State<PersonalDetailPage>
 
   Future _getPicture() async {
     final XFile? image = await _picker.pickImage(source: imageSource);
-    if (image != null) {}
-    context.pop();
+    if (image != null) {
+      MultipartFile picture =
+          await MultipartFile.fromFile(image.path, filename: image.name);
+      UploadImagePictureModel uploadPictureModel =
+          UploadImagePictureModel(picture: picture);
+      context.read<PersonalDetailBloc>().add(
+            PersonalDetailEvent.changePicture(uploadPictureModel),
+          );
+    }
   }
 
   void _selectSourceImage(BuildContext context) {
@@ -316,12 +325,14 @@ class _PersonalDetailPageState extends State<PersonalDetailPage>
                   const SizedBox(
                     width: 8.0,
                   ),
-                  Text(
-                    'Camera',
-                    style: Theme.of(context)
-                        .textTheme
-                        .labelLarge
-                        ?.copyWith(fontWeight: FontWeight.bold),
+                  Expanded(
+                    child: Text(
+                      'Camera',
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelLarge
+                          ?.copyWith(fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ],
               ),
@@ -344,11 +355,13 @@ class _PersonalDetailPageState extends State<PersonalDetailPage>
                   const SizedBox(
                     width: 8.0,
                   ),
-                  Text(
-                    'Gallery',
-                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                  Expanded(
+                    child: Text(
+                      'Gallery',
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
                   ),
                 ],
               ),
