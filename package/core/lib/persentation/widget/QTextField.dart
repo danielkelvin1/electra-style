@@ -10,6 +10,7 @@ class QTextField extends StatefulWidget {
   final bool obscure;
   final bool enabled;
   final int? maxLength;
+  final int? minLines;
   final Icon? prefixIcon;
   final AutovalidateMode? autovalidateMode;
   final TextInputAction? textInputAction;
@@ -29,6 +30,7 @@ class QTextField extends StatefulWidget {
     this.autovalidateMode,
     this.onChanged,
     this.onSubmitted,
+    this.minLines,
     this.textInputAction,
     this.obscure = false,
     this.enabled = true,
@@ -86,6 +88,8 @@ class _QTextFieldState extends State<QTextField> {
       textInputAction: widget.textInputAction,
       validator: widget.validator,
       maxLength: widget.maxLength,
+      maxLines: widget.minLines != null ? widget.minLines! + 1 : 1,
+      minLines: widget.minLines,
       autovalidateMode: widget.autovalidateMode,
       style: Theme.of(context).textTheme.bodyMedium,
       obscureText: widget.obscure,
@@ -110,7 +114,12 @@ class _QTextFieldState extends State<QTextField> {
         labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: Theme.of(context).primaryColor,
             ),
-        contentPadding: const EdgeInsets.all(0),
+        contentPadding: EdgeInsets.only(
+          top: widget.minLines != null ? 16 : 0,
+          bottom: 0,
+          right: 12,
+          left: widget.prefixIcon != null ? 0 : 12,
+        ),
         suffixIcon: widget.suffixIcon,
         prefixIcon: widget.prefixIcon,
         helperText: widget.helper,

@@ -61,8 +61,7 @@ class ApiService {
 
   Future<UploadImagePictureResponse> changePicture(
       UploadImagePictureModel picture) async {
-    FormData pictureData = FormData.fromMap({'picture': picture});
-
+    FormData pictureData = FormData.fromMap({'picture': picture.picture});
     final token = await read();
     final response = await dio.post('$baseUrl/user/picture',
         data: pictureData,

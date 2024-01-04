@@ -10,11 +10,13 @@ class QDropDownButton<E> extends StatelessWidget {
     required this.items,
     this.onChanged,
     this.prefixIcon,
+    this.label,
   }) : super(key: key);
   final E value;
   final List<DropdownMenuItem<E>> items;
   final Function(E? value)? onChanged;
   final Widget? prefixIcon;
+  final Widget? label;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,7 @@ class QDropDownButton<E> extends StatelessWidget {
       ),
       decoration: InputDecoration(
         prefixIcon: prefixIcon,
+        label: label,
         suffix: const SizedBox(
           width: 15.0,
         ),

@@ -14,6 +14,8 @@ import 'package:home/persentation/bloc/get_all_product_home/get_all_product_home
 import 'package:kiwi/kiwi.dart';
 import 'package:go_router/go_router.dart';
 import 'package:profile/persentation/bloc/personal_datail/personal_detail_bloc.dart';
+import 'package:profile/persentation/page/add_address_page.dart';
+import 'package:profile/persentation/page/my_address_page.dart';
 import 'package:profile/persentation/page/personal_detail_page.dart';
 
 void main() {
@@ -86,7 +88,15 @@ class MyApp extends StatelessWidget {
       GoRoute(
         path: PersonalDetailPage.routeName,
         builder: (context, state) => const PersonalDetailPage(),
-      )
+      ),
+      GoRoute(
+        path: MyAddressPage.routeName,
+        builder: (context, state) => const MyAddressPage(),
+      ),
+      GoRoute(
+        path: AddAddressPage.routeName,
+        builder: (context, state) => const AddAddressPage(),
+      ),
     ],
   );
 }
