@@ -20,9 +20,7 @@ ProvinceModel _$ProvinceModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProvinceModel {
-  dynamic get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'user_id')
-  int? get userId => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get province => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,8 +35,7 @@ abstract class $ProvinceModelCopyWith<$Res> {
           ProvinceModel value, $Res Function(ProvinceModel) then) =
       _$ProvinceModelCopyWithImpl<$Res, ProvinceModel>;
   @useResult
-  $Res call(
-      {dynamic id, @JsonKey(name: 'user_id') int? userId, String province});
+  $Res call({String id, String province});
 }
 
 /// @nodoc
@@ -54,19 +51,14 @@ class _$ProvinceModelCopyWithImpl<$Res, $Val extends ProvinceModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? userId = freezed,
+    Object? id = null,
     Object? province = null,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String,
       province: null == province
           ? _value.province
           : province // ignore: cast_nullable_to_non_nullable
@@ -83,8 +75,7 @@ abstract class _$$ProvinceModelImplCopyWith<$Res>
       __$$ProvinceModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {dynamic id, @JsonKey(name: 'user_id') int? userId, String province});
+  $Res call({String id, String province});
 }
 
 /// @nodoc
@@ -98,19 +89,14 @@ class __$$ProvinceModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? userId = freezed,
+    Object? id = null,
     Object? province = null,
   }) {
     return _then(_$ProvinceModelImpl(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String,
       province: null == province
           ? _value.province
           : province // ignore: cast_nullable_to_non_nullable
@@ -122,26 +108,20 @@ class __$$ProvinceModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ProvinceModelImpl extends _ProvinceModel {
-  const _$ProvinceModelImpl(
-      {required this.id,
-      @JsonKey(name: 'user_id') this.userId,
-      required this.province})
+  const _$ProvinceModelImpl({required this.id, required this.province})
       : super._();
 
   factory _$ProvinceModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProvinceModelImplFromJson(json);
 
   @override
-  final dynamic id;
-  @override
-  @JsonKey(name: 'user_id')
-  final int? userId;
+  final String id;
   @override
   final String province;
 
   @override
   String toString() {
-    return 'ProvinceModel(id: $id, userId: $userId, province: $province)';
+    return 'ProvinceModel(id: $id, province: $province)';
   }
 
   @override
@@ -149,16 +129,14 @@ class _$ProvinceModelImpl extends _ProvinceModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProvinceModelImpl &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.province, province) ||
                 other.province == province));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(id), userId, province);
+  int get hashCode => Object.hash(runtimeType, id, province);
 
   @JsonKey(ignore: true)
   @override
@@ -176,8 +154,7 @@ class _$ProvinceModelImpl extends _ProvinceModel {
 
 abstract class _ProvinceModel extends ProvinceModel {
   const factory _ProvinceModel(
-      {required final dynamic id,
-      @JsonKey(name: 'user_id') final int? userId,
+      {required final String id,
       required final String province}) = _$ProvinceModelImpl;
   const _ProvinceModel._() : super._();
 
@@ -185,10 +162,7 @@ abstract class _ProvinceModel extends ProvinceModel {
       _$ProvinceModelImpl.fromJson;
 
   @override
-  dynamic get id;
-  @override
-  @JsonKey(name: 'user_id')
-  int? get userId;
+  String get id;
   @override
   String get province;
   @override

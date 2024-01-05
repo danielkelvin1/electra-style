@@ -1,3 +1,4 @@
+import 'package:core/data/models/remote/city_model.dart';
 import 'package:core/data/models/remote/get_products_response.dart';
 import 'package:core/data/models/remote/get_province_response.dart';
 import 'package:core/data/models/remote/login_response.dart';
@@ -121,5 +122,16 @@ class ApiService {
     } else {
       throw ServerException();
     }
+  }
+
+  Future<List<CityModel>> getCity(int idProvince) async {
+    final response = await dio.get(
+      '$baseUrlRajaOngkir/city?province=$idProvince',
+      options: Options(
+        headers: {
+          'key': apiTokenRajaOngkir,
+        },
+      ),
+    );
   }
 }

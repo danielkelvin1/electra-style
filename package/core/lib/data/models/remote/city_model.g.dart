@@ -1,19 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'province_model.dart';
+part of 'city_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ProvinceModelImpl _$$ProvinceModelImplFromJson(Map<String, dynamic> json) =>
-    _$ProvinceModelImpl(
+_$CityModelImpl _$$CityModelImplFromJson(Map<String, dynamic> json) =>
+    _$CityModelImpl(
       id: json['id'] as String,
-      province: json['province'] as String,
+      city: json['city'] as String,
     );
 
-Map<String, dynamic> _$$ProvinceModelImplToJson(_$ProvinceModelImpl instance) =>
+Map<String, dynamic> _$$CityModelImplToJson(_$CityModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'province': instance.province,
+      'city': instance.city,
     };
