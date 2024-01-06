@@ -1,4 +1,6 @@
+import 'package:core/data/models/remote/add_address_request.dart';
 import 'package:core/data/models/remote/city_model.dart';
+import 'package:core/data/models/remote/get_city_response.dart';
 import 'package:core/data/models/remote/get_products_response.dart';
 import 'package:core/data/models/remote/get_province_response.dart';
 import 'package:core/data/models/remote/login_response.dart';
@@ -133,5 +135,27 @@ class ApiService {
         },
       ),
     );
+
+    if (response.statusCode == 200) {
+      return GetCityResponse.fromJson(response.data['rajaongkir']).results;
+    } else {
+      throw ServerException();
+    }
+  }
+
+  Future<String> addAddress(AddAddressRequest addAddressRequest) async {
+    final token = await read();
+    final response = await dio.post(
+      '$baseUrl/user/address',
+      data: addAddressRequest.toJson(),
+      options: Options(
+        headers: {'Authorization': 'Bearer $token'},
+      ),
+    );
+    if (response.statusCode == 201) {
+      return response.data['message'];
+    } else {
+      throw ServerException();
+    }
   }
 }

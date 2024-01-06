@@ -8,12 +8,12 @@ part of 'province_model.dart';
 
 _$ProvinceModelImpl _$$ProvinceModelImplFromJson(Map<String, dynamic> json) =>
     _$ProvinceModelImpl(
-      id: json['id'] as String,
+      id: json['province_id'] as String,
       province: json['province'] as String,
     );
 
 Map<String, dynamic> _$$ProvinceModelImplToJson(_$ProvinceModelImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'province_id': instance.id,
       'province': instance.province,
     };

@@ -20,7 +20,9 @@ CityModel _$CityModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CityModel {
+  @JsonKey(name: 'city_id')
   String get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'city_name')
   String get city => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +36,9 @@ abstract class $CityModelCopyWith<$Res> {
   factory $CityModelCopyWith(CityModel value, $Res Function(CityModel) then) =
       _$CityModelCopyWithImpl<$Res, CityModel>;
   @useResult
-  $Res call({String id, String city});
+  $Res call(
+      {@JsonKey(name: 'city_id') String id,
+      @JsonKey(name: 'city_name') String city});
 }
 
 /// @nodoc
@@ -74,7 +78,9 @@ abstract class _$$CityModelImplCopyWith<$Res>
       __$$CityModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String city});
+  $Res call(
+      {@JsonKey(name: 'city_id') String id,
+      @JsonKey(name: 'city_name') String city});
 }
 
 /// @nodoc
@@ -107,14 +113,19 @@ class __$$CityModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CityModelImpl extends _CityModel {
-  const _$CityModelImpl({required this.id, required this.city}) : super._();
+  const _$CityModelImpl(
+      {@JsonKey(name: 'city_id') required this.id,
+      @JsonKey(name: 'city_name') required this.city})
+      : super._();
 
   factory _$CityModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CityModelImplFromJson(json);
 
   @override
+  @JsonKey(name: 'city_id')
   final String id;
   @override
+  @JsonKey(name: 'city_name')
   final String city;
 
   @override
@@ -151,15 +162,19 @@ class _$CityModelImpl extends _CityModel {
 
 abstract class _CityModel extends CityModel {
   const factory _CityModel(
-      {required final String id, required final String city}) = _$CityModelImpl;
+          {@JsonKey(name: 'city_id') required final String id,
+          @JsonKey(name: 'city_name') required final String city}) =
+      _$CityModelImpl;
   const _CityModel._() : super._();
 
   factory _CityModel.fromJson(Map<String, dynamic> json) =
       _$CityModelImpl.fromJson;
 
   @override
+  @JsonKey(name: 'city_id')
   String get id;
   @override
+  @JsonKey(name: 'city_name')
   String get city;
   @override
   @JsonKey(ignore: true)

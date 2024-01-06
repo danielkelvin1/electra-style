@@ -20,6 +20,7 @@ ProvinceModel _$ProvinceModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProvinceModel {
+  @JsonKey(name: 'province_id')
   String get id => throw _privateConstructorUsedError;
   String get province => throw _privateConstructorUsedError;
 
@@ -35,7 +36,7 @@ abstract class $ProvinceModelCopyWith<$Res> {
           ProvinceModel value, $Res Function(ProvinceModel) then) =
       _$ProvinceModelCopyWithImpl<$Res, ProvinceModel>;
   @useResult
-  $Res call({String id, String province});
+  $Res call({@JsonKey(name: 'province_id') String id, String province});
 }
 
 /// @nodoc
@@ -75,7 +76,7 @@ abstract class _$$ProvinceModelImplCopyWith<$Res>
       __$$ProvinceModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String province});
+  $Res call({@JsonKey(name: 'province_id') String id, String province});
 }
 
 /// @nodoc
@@ -108,13 +109,15 @@ class __$$ProvinceModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ProvinceModelImpl extends _ProvinceModel {
-  const _$ProvinceModelImpl({required this.id, required this.province})
+  const _$ProvinceModelImpl(
+      {@JsonKey(name: 'province_id') required this.id, required this.province})
       : super._();
 
   factory _$ProvinceModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProvinceModelImplFromJson(json);
 
   @override
+  @JsonKey(name: 'province_id')
   final String id;
   @override
   final String province;
@@ -154,7 +157,7 @@ class _$ProvinceModelImpl extends _ProvinceModel {
 
 abstract class _ProvinceModel extends ProvinceModel {
   const factory _ProvinceModel(
-      {required final String id,
+      {@JsonKey(name: 'province_id') required final String id,
       required final String province}) = _$ProvinceModelImpl;
   const _ProvinceModel._() : super._();
 
@@ -162,6 +165,7 @@ abstract class _ProvinceModel extends ProvinceModel {
       _$ProvinceModelImpl.fromJson;
 
   @override
+  @JsonKey(name: 'province_id')
   String get id;
   @override
   String get province;

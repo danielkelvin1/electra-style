@@ -8,7 +8,7 @@ part 'province_model.g.dart';
 class ProvinceModel with _$ProvinceModel {
   const ProvinceModel._();
   const factory ProvinceModel({
-    required String id,
+    @JsonKey(name: 'province_id') required String id,
     required String province,
   }) = _ProvinceModel;
 

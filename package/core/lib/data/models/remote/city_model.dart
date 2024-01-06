@@ -8,8 +8,8 @@ part 'city_model.g.dart';
 class CityModel with _$CityModel {
   const CityModel._();
   const factory CityModel({
-    required String id,
-    required String city,
+    @JsonKey(name: 'city_id') required String id,
+    @JsonKey(name: 'city_name') required String city,
   }) = _CityModel;
 
   factory CityModel.fromJson(Map<String, dynamic> json) =>

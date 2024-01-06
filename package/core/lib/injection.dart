@@ -4,9 +4,12 @@ import 'package:core/config/dio_module.dart';
 import 'package:core/data/datasource/auth_remote_data_source.dart';
 import 'package:core/data/datasource/product_remote_data_source.dart';
 import 'package:core/data/datasource/user_remote_data_source.dart';
+import 'package:core/data/datasource/address_remote_data_source.dart';
+import 'package:core/data/repository/address_repository.dart';
 import 'package:core/data/repository/auth_repository.dart';
 import 'package:core/data/repository/product_repository.dart';
 import 'package:core/data/repository/user_repository.dart';
+import 'package:core/domain/repository/address_repository.dart';
 import 'package:core/domain/repository/auth_repository.dart';
 import 'package:core/domain/repository/product_repository.dart';
 import 'package:core/domain/repository/user_repository.dart';
@@ -19,9 +22,13 @@ import 'package:home/persentation/bloc/get_detail_product/get_detail_product_blo
 import 'package:kiwi/kiwi.dart';
 import 'package:auth/domain/usecase/login_user.dart';
 import 'package:auth/domain/usecase/register_user.dart';
+import 'package:profile/domain/usecase/get_city.dart';
+import 'package:profile/domain/usecase/get_province.dart';
 import 'package:profile/domain/usecase/get_user.dart';
+import 'package:profile/domain/usecase/add_address.dart';
 import 'package:profile/domain/usecase/update_picture_user.dart';
 import 'package:profile/domain/usecase/update_user.dart';
+import 'package:profile/persentation/bloc/add_address/add_address_bloc.dart';
 import 'package:profile/persentation/bloc/personal_datail/personal_detail_bloc.dart';
 
 part 'injection.g.dart';
@@ -42,6 +49,10 @@ abstract class Injection {
       from: UserRemoteDataSourceImpl,
       resolvers: {ApiService: 'api_service'},
       name: 'user_remote')
+  @Register.factory(AddressRemoteDataSource,
+      from: AddressRemoteDataSourceImpl,
+      resolvers: {ApiService: 'api_service'},
+      name: 'address_remote')
   //repository
   @Register.factory(AuthRepository,
       from: AuthRepositoryImpl,
@@ -55,6 +66,10 @@ abstract class Injection {
       from: UserRepositoryImpl,
       resolvers: {UserRemoteDataSource: 'user_remote'},
       name: 'user_repo')
+  @Register.factory(AddressRepository,
+      from: AddressRepositoryImpl,
+      resolvers: {AddressRemoteDataSource: 'address_remote'},
+      name: 'address_repo')
   //usecase
   @Register.singleton(LoginUser,
       resolvers: {AuthRepository: 'auth_repo'}, name: 'login_user')
@@ -72,6 +87,12 @@ abstract class Injection {
       resolvers: {UserRepository: 'user_repo'}, name: 'update_user_picture')
   @Register.singleton(UpdateUser,
       resolvers: {UserRepository: 'user_repo'}, name: 'update_user')
+  @Register.singleton(GetProvince,
+      resolvers: {AddressRepository: 'address_repo'}, name: 'get_province')
+  @Register.singleton(GetCity,
+      resolvers: {AddressRepository: 'address_repo'}, name: 'get_city')
+  @Register.singleton(AddAddress,
+      resolvers: {AddressRepository: 'address_repo'}, name: 'add_address')
   //bloc
   @Register.factory(LoginBloc, resolvers: {LoginUser: 'login_user'})
   @Register.factory(RegisterBloc, resolvers: {RegisterUSer: 'register_user'})
@@ -80,6 +101,7 @@ abstract class Injection {
   @Register.factory(GetDetailProductBloc,
       resolvers: {GetDetailProduct: 'get_detail_product'})
   @Register.factory(PersonalDetailBloc)
+  @Register.factory(AddAddressBloc)
   void configure();
 }
 

@@ -22,6 +22,9 @@ class _$Injection extends Injection {
       ..registerFactory<UserRemoteDataSource>(
           (c) => UserRemoteDataSourceImpl(c<ApiService>('api_service')),
           name: 'user_remote')
+      ..registerFactory<AddressRemoteDataSource>(
+          (c) => AddressRemoteDataSourceImpl(c<ApiService>('api_service')),
+          name: 'address_remote')
       ..registerFactory<AuthRepository>(
           (c) => AuthRepositoryImpl(c<AuthRemoteDataSource>('auth_remote')),
           name: 'auth_repo')
@@ -32,6 +35,10 @@ class _$Injection extends Injection {
       ..registerFactory<UserRepository>(
           (c) => UserRepositoryImpl(c<UserRemoteDataSource>('user_remote')),
           name: 'user_repo')
+      ..registerFactory<AddressRepository>(
+          (c) => AddressRepositoryImpl(
+              c<AddressRemoteDataSource>('address_remote')),
+          name: 'address_repo')
       ..registerSingleton((c) => LoginUser(c<AuthRepository>('auth_repo')),
           name: 'login_user')
       ..registerSingleton((c) => RegisterUSer(c<AuthRepository>('auth_repo')),
@@ -49,12 +56,21 @@ class _$Injection extends Injection {
           name: 'update_user_picture')
       ..registerSingleton((c) => UpdateUser(c<UserRepository>('user_repo')),
           name: 'update_user')
+      ..registerSingleton(
+          (c) => GetProvince(c<AddressRepository>('address_repo')),
+          name: 'get_province')
+      ..registerSingleton((c) => GetCity(c<AddressRepository>('address_repo')),
+          name: 'get_city')
+      ..registerSingleton(
+          (c) => AddAddress(c<AddressRepository>('address_repo')),
+          name: 'add_address')
       ..registerFactory((c) => LoginBloc(c<LoginUser>('login_user')))
       ..registerFactory((c) => RegisterBloc(c<RegisterUSer>('register_user')))
       ..registerFactory((c) =>
           GetAllProductHomeBloc(c<GetAllProductsHome>('get_all_products_home')))
       ..registerFactory((c) =>
           GetDetailProductBloc(c<GetDetailProduct>('get_detail_product')))
-      ..registerFactory((c) => PersonalDetailBloc());
+      ..registerFactory((c) => PersonalDetailBloc())
+      ..registerFactory((c) => AddAddressBloc());
   }
 }
