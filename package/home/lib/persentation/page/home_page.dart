@@ -5,6 +5,7 @@ import 'package:core/persentation/widget/ProductCard.dart';
 import 'package:core/utils/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 import 'package:go_router/go_router.dart';
 import 'package:home/persentation/bloc/get_all_product_home/get_all_product_home_bloc.dart';
 import 'package:core/utils/image_url_remove_extension.dart';
@@ -45,31 +46,42 @@ class _HomePageState extends State<HomePage> {
                     BlocBuilder<GetAllProductHomeBloc, GetAllProductHomeState>(
                   builder: (context, state) {
                     return state.maybeWhen(
-                      loaded: (products) => GridView.builder(
-                        itemCount: products.length,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: 1 / 1.9,
-                          crossAxisSpacing: 15,
-                          mainAxisSpacing: 15,
-                        ),
-                        itemBuilder: (context, index) {
-                          final item = products[index];
-                          return GestureDetector(
-                            onTap: () =>
-                                context.push('/detail-product/${item.id}'),
-                            child: ProductCard(
-                              title: item.title,
-                              subtitle: item.subtitle,
-                              price: item.price,
-                              imageUrl:
-                                  "$imageUrl${item.images[0].imageUrl.imageUrlRemovePublic()}" ??
-                                      'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg',
+                      loaded: (products) {
+                        if (products.isEmpty) {
+                          return Center(
+                            child: Lottie.network(
+                              'https://lottie.host/7635512c-1190-48ee-8621-dcca2d41ed25/CaF2PxQX2B.json',
+                              height: 900,
+                              width: 900,
                             ),
                           );
-                        },
-                      ),
+                        }
+                        return GridView.builder(
+                          itemCount: products.length,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 1 / 1.9,
+                            crossAxisSpacing: 15,
+                            mainAxisSpacing: 15,
+                          ),
+                          itemBuilder: (context, index) {
+                            final item = products[index];
+                            return GestureDetector(
+                              onTap: () =>
+                                  context.push('/detail-product/${item.id}'),
+                              child: ProductCard(
+                                title: item.title,
+                                subtitle: item.subtitle,
+                                price: item.price,
+                                imageUrl:
+                                    "$imageUrl${item.images[0].imageUrl.imageUrlRemovePublic()}" ??
+                                        'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg',
+                              ),
+                            );
+                          },
+                        );
+                      },
                       loading: () => const Center(
                         child: CircularProgressIndicator(),
                       ),
